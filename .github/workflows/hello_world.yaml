@@ -17,6 +17,9 @@ jobs:
       - name: hello world
         run: echo "hello world"
         shell: bash
+      - name: List Files in Repository
+        run: ls -R $GITHUB_WORKSPACE | grep -vE 'node_modules|dist'
+
 
   goodbye:
     runs-on: ubuntu-latest
