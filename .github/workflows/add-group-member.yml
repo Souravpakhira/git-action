@@ -24,4 +24,6 @@ jobs:
 
       - name: Add member to GCP group
         run: |
-          gcloud identity groups describe gcp-admin@souravpakhira.publicvm.com
+          gcloud identity groups memberships add \
+            --group-email="eng-discuss@souravpakhira.publicvm.com" \
+            --member-email="prince@souravpakhira.publicvm.com"
