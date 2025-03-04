@@ -1,0 +1,27 @@
+name: Add Member to GCP Group
+
+on:
+  workflow_dispatch:  # Manually trigger the workflow
+
+
+permissions:
+  contents: read  # Required for checking out the repo
+
+jobs:
+  add-member:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+
+      - name: Set up gcloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Add member to GCP group
+        run: |
+          gcloud identity groups describe gcp-admin@souravpakhira.publicvm.com
